@@ -1,0 +1,8 @@
+E:\epam\IndividualProject\eQuizz\eQuizz.Entities\bin\Debug\eQuizz.Entities.dll.config
+E:\epam\IndividualProject\eQuizz\eQuizz.Entities\bin\Debug\eQuizz.Entities.dll
+E:\epam\IndividualProject\eQuizz\eQuizz.Entities\bin\Debug\eQuizz.Entities.pdb
+E:\epam\IndividualProject\eQuizz\eQuizz.Entities\bin\Debug\EntityFramework.dll
+E:\epam\IndividualProject\eQuizz\eQuizz.Entities\bin\Debug\EntityFramework.xml
+E:\epam\IndividualProject\eQuizz\eQuizz.Entities\obj\Debug\eQuizz.Entities.csprojResolveAssemblyReference.cache
+E:\epam\IndividualProject\eQuizz\eQuizz.Entities\obj\Debug\eQuizz.Entities.dll
+E:\epam\IndividualProject\eQuizz\eQuizz.Entities\obj\Debug\eQuizz.Entities.pdb

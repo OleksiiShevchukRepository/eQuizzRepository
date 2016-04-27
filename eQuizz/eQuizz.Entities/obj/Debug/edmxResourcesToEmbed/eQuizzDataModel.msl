@@ -1,0 +1,234 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="eQuizModelStoreContainer" CdmEntityContainer="eQuizEntities">
+    <EntitySetMapping Name="FacebookUsers">
+      <EntityTypeMapping TypeName="eQuizModel.FacebookUser">
+        <MappingFragment StoreEntitySet="FacebookUsers">
+          <ScalarProperty Name="fb_user_id" ColumnName="fb_user_id" />
+          <ScalarProperty Name="user_id" ColumnName="user_id" />
+          <ScalarProperty Name="user_name" ColumnName="user_name" />
+          <ScalarProperty Name="first_name" ColumnName="first_name" />
+          <ScalarProperty Name="last_name" ColumnName="last_name" />
+          <ScalarProperty Name="email" ColumnName="email" />
+          <ScalarProperty Name="profile_link" ColumnName="profile_link" />
+          <ScalarProperty Name="obtained_date" ColumnName="obtained_date" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="QuestionAnswers">
+      <EntityTypeMapping TypeName="eQuizModel.QuestionAnswer">
+        <MappingFragment StoreEntitySet="QuestionAnswers">
+          <ScalarProperty Name="answer_id" ColumnName="answer_id" />
+          <ScalarProperty Name="question_id" ColumnName="question_id" />
+          <ScalarProperty Name="answer_text" ColumnName="answer_text" />
+          <ScalarProperty Name="answer_order" ColumnName="answer_order" />
+          <ScalarProperty Name="is_right" ColumnName="is_right" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Questions">
+      <EntityTypeMapping TypeName="eQuizModel.Question">
+        <MappingFragment StoreEntitySet="Questions">
+          <ScalarProperty Name="question_id" ColumnName="question_id" />
+          <ScalarProperty Name="question_type_id" ColumnName="question_type_id" />
+          <ScalarProperty Name="topic_id" ColumnName="topic_id" />
+          <ScalarProperty Name="question_text" ColumnName="question_text" />
+          <ScalarProperty Name="question_complexity" ColumnName="question_complexity" />
+          <ScalarProperty Name="is_active" ColumnName="is_active" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="QuestionTypes">
+      <EntityTypeMapping TypeName="eQuizModel.QuestionType">
+        <MappingFragment StoreEntitySet="QuestionTypes">
+          <ScalarProperty Name="question_type_id" ColumnName="question_type_id" />
+          <ScalarProperty Name="type_name" ColumnName="type_name" />
+          <ScalarProperty Name="is_automatic" ColumnName="is_automatic" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="QuizBlocks">
+      <EntityTypeMapping TypeName="eQuizModel.QuizBlock">
+        <MappingFragment StoreEntitySet="QuizBlocks">
+          <ScalarProperty Name="quiz_block_id" ColumnName="quiz_block_id" />
+          <ScalarProperty Name="quiz_id" ColumnName="quiz_id" />
+          <ScalarProperty Name="topic_id" ColumnName="topic_id" />
+          <ScalarProperty Name="block_order" ColumnName="block_order" />
+          <ScalarProperty Name="is_random" ColumnName="is_random" />
+          <ScalarProperty Name="question_min_complexity" ColumnName="question_min_complexity" />
+          <ScalarProperty Name="question_max_complexity" ColumnName="question_max_complexity" />
+          <ScalarProperty Name="question_count" ColumnName="question_count" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Quizes">
+      <EntityTypeMapping TypeName="eQuizModel.Quize">
+        <MappingFragment StoreEntitySet="Quizes">
+          <ScalarProperty Name="quiz_id" ColumnName="quiz_id" />
+          <ScalarProperty Name="quiz_type_id" ColumnName="quiz_type_id" />
+          <ScalarProperty Name="quiz_name" ColumnName="quiz_name" />
+          <ScalarProperty Name="description" ColumnName="description" />
+          <ScalarProperty Name="start_date" ColumnName="start_date" />
+          <ScalarProperty Name="end_date" ColumnName="end_date" />
+          <ScalarProperty Name="time_limit_minutes" ColumnName="time_limit_minutes" />
+          <ScalarProperty Name="internet_access" ColumnName="internet_access" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="QuizPasses">
+      <EntityTypeMapping TypeName="eQuizModel.QuizPass">
+        <MappingFragment StoreEntitySet="QuizPasses">
+          <ScalarProperty Name="quiz_pass_id" ColumnName="quiz_pass_id" />
+          <ScalarProperty Name="quiz_id" ColumnName="quiz_id" />
+          <ScalarProperty Name="user_id" ColumnName="user_id" />
+          <ScalarProperty Name="start_time" ColumnName="start_time" />
+          <ScalarProperty Name="finish_time" ColumnName="finish_time" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="QuizPassQuestions">
+      <EntityTypeMapping TypeName="eQuizModel.QuizPassQuestion">
+        <MappingFragment StoreEntitySet="QuizPassQuestions">
+          <ScalarProperty Name="quiz_pass_question_id" ColumnName="quiz_pass_question_id" />
+          <ScalarProperty Name="quiz_pass_id" ColumnName="quiz_pass_id" />
+          <ScalarProperty Name="question_id" ColumnName="question_id" />
+          <ScalarProperty Name="quiz_block_id" ColumnName="quiz_block_id" />
+          <ScalarProperty Name="question_order" ColumnName="question_order" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="QuizPassScores">
+      <EntityTypeMapping TypeName="eQuizModel.QuizPassScore">
+        <MappingFragment StoreEntitySet="QuizPassScores">
+          <ScalarProperty Name="quiz_pass_id" ColumnName="quiz_pass_id" />
+          <ScalarProperty Name="pass_score" ColumnName="pass_score" />
+          <ScalarProperty Name="evaluated_by" ColumnName="evaluated_by" />
+          <ScalarProperty Name="evaluated_at" ColumnName="evaluated_at" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="QuizQuestions">
+      <EntityTypeMapping TypeName="eQuizModel.QuizQuestion">
+        <MappingFragment StoreEntitySet="QuizQuestions">
+          <ScalarProperty Name="question_id" ColumnName="question_id" />
+          <ScalarProperty Name="quiz_block_id" ColumnName="quiz_block_id" />
+          <ScalarProperty Name="quiz_variant_id" ColumnName="quiz_variant_id" />
+          <ScalarProperty Name="question_score" ColumnName="question_score" />
+          <ScalarProperty Name="question_order" ColumnName="question_order" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="QuizTypes">
+      <EntityTypeMapping TypeName="eQuizModel.QuizType">
+        <MappingFragment StoreEntitySet="QuizTypes">
+          <ScalarProperty Name="quiz_type_id" ColumnName="quiz_type_id" />
+          <ScalarProperty Name="type_name" ColumnName="type_name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="QuizVariants">
+      <EntityTypeMapping TypeName="eQuizModel.QuizVariant">
+        <MappingFragment StoreEntitySet="QuizVariants">
+          <ScalarProperty Name="quiz_variant_id" ColumnName="quiz_variant_id" />
+          <ScalarProperty Name="quiz_id" ColumnName="quiz_id" />
+          <ScalarProperty Name="variant_number" ColumnName="variant_number" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="sysdiagrams">
+      <EntityTypeMapping TypeName="eQuizModel.sysdiagram">
+        <MappingFragment StoreEntitySet="sysdiagrams">
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+          <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+          <ScalarProperty Name="version" ColumnName="version" />
+          <ScalarProperty Name="definition" ColumnName="definition" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Tags">
+      <EntityTypeMapping TypeName="eQuizModel.Tag">
+        <MappingFragment StoreEntitySet="Tags">
+          <ScalarProperty Name="tag_id" ColumnName="tag_id" />
+          <ScalarProperty Name="tag_name" ColumnName="tag_name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Topics">
+      <EntityTypeMapping TypeName="eQuizModel.Topic">
+        <MappingFragment StoreEntitySet="Topics">
+          <ScalarProperty Name="topic_id" ColumnName="topic_id" />
+          <ScalarProperty Name="topic_name" ColumnName="topic_name" />
+          <ScalarProperty Name="topic_description" ColumnName="topic_description" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="UserAnswers">
+      <EntityTypeMapping TypeName="eQuizModel.UserAnswer">
+        <MappingFragment StoreEntitySet="UserAnswers">
+          <ScalarProperty Name="quiz_pass_question_id" ColumnName="quiz_pass_question_id" />
+          <ScalarProperty Name="answer_id" ColumnName="answer_id" />
+          <ScalarProperty Name="answer_time" ColumnName="answer_time" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="UserAnswerScores">
+      <EntityTypeMapping TypeName="eQuizModel.UserAnswerScore">
+        <MappingFragment StoreEntitySet="UserAnswerScores">
+          <ScalarProperty Name="quiz_pass_question_id" ColumnName="quiz_pass_question_id" />
+          <ScalarProperty Name="answer_score" ColumnName="answer_score" />
+          <ScalarProperty Name="evaluated_by" ColumnName="evaluated_by" />
+          <ScalarProperty Name="evaluated_at" ColumnName="evaluated_at" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="UserGroups">
+      <EntityTypeMapping TypeName="eQuizModel.UserGroup">
+        <MappingFragment StoreEntitySet="UserGroups">
+          <ScalarProperty Name="group_id" ColumnName="group_id" />
+          <ScalarProperty Name="group_name" ColumnName="group_name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Users">
+      <EntityTypeMapping TypeName="eQuizModel.User">
+        <MappingFragment StoreEntitySet="Users">
+          <ScalarProperty Name="user_id" ColumnName="user_id" />
+          <ScalarProperty Name="first_name" ColumnName="first_name" />
+          <ScalarProperty Name="last_name" ColumnName="last_name" />
+          <ScalarProperty Name="parent_name" ColumnName="parent_name" />
+          <ScalarProperty Name="email" ColumnName="email" />
+          <ScalarProperty Name="phone" ColumnName="phone" />
+          <ScalarProperty Name="is_email_confirmed" ColumnName="is_email_confirmed" />
+          <ScalarProperty Name="password_hash" ColumnName="password_hash" />
+          <ScalarProperty Name="security_stamp" ColumnName="security_stamp" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="UserTextAnswers">
+      <EntityTypeMapping TypeName="eQuizModel.UserTextAnswer">
+        <MappingFragment StoreEntitySet="UserTextAnswers">
+          <ScalarProperty Name="quiz_pass_question_id" ColumnName="quiz_pass_question_id" />
+          <ScalarProperty Name="answer_time" ColumnName="answer_time" />
+          <ScalarProperty Name="answer_text" ColumnName="answer_text" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <AssociationSetMapping Name="QuestionTags" TypeName="eQuizModel.QuestionTags" StoreEntitySet="QuestionTags">
+      <EndProperty Name="Questions">
+        <ScalarProperty Name="question_id" ColumnName="question_id" />
+      </EndProperty>
+      <EndProperty Name="Tags">
+        <ScalarProperty Name="tag_id" ColumnName="tag_id" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="UsersToUserGroups" TypeName="eQuizModel.UsersToUserGroups" StoreEntitySet="UsersToUserGroups">
+      <EndProperty Name="UserGroups">
+        <ScalarProperty Name="group_id" ColumnName="group_id" />
+      </EndProperty>
+      <EndProperty Name="Users">
+        <ScalarProperty Name="user_id" ColumnName="user_id" />
+      </EndProperty>
+    </AssociationSetMapping>
+  </EntityContainerMapping>
+</Mapping>

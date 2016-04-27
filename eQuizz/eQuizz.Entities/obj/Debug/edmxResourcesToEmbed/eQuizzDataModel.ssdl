@@ -1,0 +1,657 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="eQuizModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="FacebookUsers">
+    <Key>
+      <PropertyRef Name="fb_user_id" />
+    </Key>
+    <Property Name="fb_user_id" Type="bigint" Nullable="false" />
+    <Property Name="user_id" Type="int" Nullable="false" />
+    <Property Name="user_name" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="first_name" Type="nvarchar" MaxLength="50" />
+    <Property Name="last_name" Type="nvarchar" MaxLength="50" />
+    <Property Name="email" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="profile_link" Type="varchar" MaxLength="100" />
+    <Property Name="obtained_date" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="QuestionAnswers">
+    <Key>
+      <PropertyRef Name="answer_id" />
+    </Key>
+    <Property Name="answer_id" Type="int" Nullable="false" />
+    <Property Name="question_id" Type="int" Nullable="false" />
+    <Property Name="answer_text" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="answer_order" Type="tinyint" />
+    <Property Name="is_right" Type="bit" />
+  </EntityType>
+  <EntityType Name="Questions">
+    <Key>
+      <PropertyRef Name="question_id" />
+    </Key>
+    <Property Name="question_id" Type="int" Nullable="false" />
+    <Property Name="question_type_id" Type="tinyint" Nullable="false" />
+    <Property Name="topic_id" Type="smallint" Nullable="false" />
+    <Property Name="question_text" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="question_complexity" Type="tinyint" Nullable="false" />
+    <Property Name="is_active" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="QuestionTags">
+    <Key>
+      <PropertyRef Name="question_id" />
+      <PropertyRef Name="tag_id" />
+    </Key>
+    <Property Name="question_id" Type="int" Nullable="false" />
+    <Property Name="tag_id" Type="smallint" Nullable="false" />
+  </EntityType>
+  <EntityType Name="QuestionTypes">
+    <Key>
+      <PropertyRef Name="type_name" />
+    </Key>
+    <Property Name="question_type_id" Type="tinyint" Nullable="false" />
+    <Property Name="type_name" Type="varchar" MaxLength="20" Nullable="false" />
+    <Property Name="is_automatic" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="QuizBlocks">
+    <Key>
+      <PropertyRef Name="quiz_block_id" />
+    </Key>
+    <Property Name="quiz_block_id" Type="int" Nullable="false" />
+    <Property Name="quiz_id" Type="int" Nullable="false" />
+    <Property Name="topic_id" Type="smallint" Nullable="false" />
+    <Property Name="block_order" Type="tinyint" />
+    <Property Name="is_random" Type="bit" Nullable="false" />
+    <Property Name="question_min_complexity" Type="tinyint" />
+    <Property Name="question_max_complexity" Type="tinyint" />
+    <Property Name="question_count" Type="tinyint" />
+  </EntityType>
+  <EntityType Name="Quizes">
+    <Key>
+      <PropertyRef Name="quiz_id" />
+    </Key>
+    <Property Name="quiz_id" Type="int" Nullable="false" />
+    <Property Name="quiz_type_id" Type="tinyint" Nullable="false" />
+    <Property Name="quiz_name" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="description" Type="nvarchar(max)" />
+    <Property Name="start_date" Type="smalldatetime" />
+    <Property Name="end_date" Type="smalldatetime" />
+    <Property Name="time_limit_minutes" Type="smallint" />
+    <Property Name="internet_access" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="QuizPasses">
+    <Key>
+      <PropertyRef Name="quiz_pass_id" />
+    </Key>
+    <Property Name="quiz_pass_id" Type="int" Nullable="false" />
+    <Property Name="quiz_id" Type="int" Nullable="false" />
+    <Property Name="user_id" Type="int" Nullable="false" />
+    <Property Name="start_time" Type="smalldatetime" Nullable="false" />
+    <Property Name="finish_time" Type="smalldatetime" />
+  </EntityType>
+  <EntityType Name="QuizPassQuestions">
+    <Key>
+      <PropertyRef Name="quiz_pass_question_id" />
+    </Key>
+    <Property Name="quiz_pass_question_id" Type="int" Nullable="false" />
+    <Property Name="quiz_pass_id" Type="int" Nullable="false" />
+    <Property Name="question_id" Type="int" Nullable="false" />
+    <Property Name="quiz_block_id" Type="int" Nullable="false" />
+    <Property Name="question_order" Type="smallint" Nullable="false" />
+  </EntityType>
+  <EntityType Name="QuizPassScores">
+    <Key>
+      <PropertyRef Name="quiz_pass_id" />
+    </Key>
+    <Property Name="quiz_pass_id" Type="int" Nullable="false" />
+    <Property Name="pass_score" Type="smallint" Nullable="false" />
+    <Property Name="evaluated_by" Type="int" Nullable="false" />
+    <Property Name="evaluated_at" Type="smalldatetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="QuizQuestions">
+    <Key>
+      <PropertyRef Name="question_id" />
+      <PropertyRef Name="quiz_block_id" />
+    </Key>
+    <Property Name="question_id" Type="int" Nullable="false" />
+    <Property Name="quiz_block_id" Type="int" Nullable="false" />
+    <Property Name="quiz_variant_id" Type="int" />
+    <Property Name="question_score" Type="tinyint" Nullable="false" />
+    <Property Name="question_order" Type="smallint" />
+  </EntityType>
+  <EntityType Name="QuizTypes">
+    <Key>
+      <PropertyRef Name="quiz_type_id" />
+    </Key>
+    <Property Name="quiz_type_id" Type="tinyint" Nullable="false" />
+    <Property Name="type_name" Type="varchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="QuizVariants">
+    <Key>
+      <PropertyRef Name="quiz_variant_id" />
+    </Key>
+    <Property Name="quiz_variant_id" Type="int" Nullable="false" />
+    <Property Name="quiz_id" Type="int" Nullable="false" />
+    <Property Name="variant_number" Type="tinyint" Nullable="false" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="principal_id" Type="int" Nullable="false" />
+    <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="version" Type="int" />
+    <Property Name="definition" Type="varbinary(max)" />
+  </EntityType>
+  <EntityType Name="Tags">
+    <Key>
+      <PropertyRef Name="tag_id" />
+    </Key>
+    <Property Name="tag_id" Type="smallint" Nullable="false" />
+    <Property Name="tag_name" Type="nvarchar" MaxLength="20" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Topics">
+    <Key>
+      <PropertyRef Name="topic_id" />
+    </Key>
+    <Property Name="topic_id" Type="smallint" Nullable="false" />
+    <Property Name="topic_name" Type="nvarchar" MaxLength="30" Nullable="false" />
+    <Property Name="topic_description" Type="nvarchar" MaxLength="250" />
+  </EntityType>
+  <EntityType Name="UserAnswers">
+    <Key>
+      <PropertyRef Name="quiz_pass_question_id" />
+      <PropertyRef Name="answer_id" />
+    </Key>
+    <Property Name="quiz_pass_question_id" Type="int" Nullable="false" />
+    <Property Name="answer_id" Type="int" Nullable="false" />
+    <Property Name="answer_time" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="UserAnswerScores">
+    <Key>
+      <PropertyRef Name="quiz_pass_question_id" />
+    </Key>
+    <Property Name="quiz_pass_question_id" Type="int" Nullable="false" />
+    <Property Name="answer_score" Type="tinyint" Nullable="false" />
+    <Property Name="evaluated_by" Type="int" Nullable="false" />
+    <Property Name="evaluated_at" Type="smalldatetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="UserGroups">
+    <Key>
+      <PropertyRef Name="group_id" />
+    </Key>
+    <Property Name="group_id" Type="smallint" Nullable="false" />
+    <Property Name="group_name" Type="nvarchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Users">
+    <Key>
+      <PropertyRef Name="user_id" />
+    </Key>
+    <Property Name="user_id" Type="int" Nullable="false" />
+    <Property Name="first_name" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="last_name" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="parent_name" Type="nvarchar" MaxLength="50" />
+    <Property Name="email" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="phone" Type="varchar" MaxLength="20" Nullable="false" />
+    <Property Name="is_email_confirmed" Type="bit" Nullable="false" />
+    <Property Name="password_hash" Type="varchar(max)" />
+    <Property Name="security_stamp" Type="varchar(max)" />
+  </EntityType>
+  <EntityType Name="UsersToUserGroups">
+    <Key>
+      <PropertyRef Name="user_id" />
+      <PropertyRef Name="group_id" />
+    </Key>
+    <Property Name="user_id" Type="int" Nullable="false" />
+    <Property Name="group_id" Type="smallint" Nullable="false" />
+  </EntityType>
+  <EntityType Name="UserTextAnswers">
+    <Key>
+      <PropertyRef Name="quiz_pass_question_id" />
+    </Key>
+    <Property Name="quiz_pass_question_id" Type="int" Nullable="false" />
+    <Property Name="answer_time" Type="datetime" Nullable="false" />
+    <Property Name="answer_text" Type="nvarchar(max)" Nullable="false" />
+  </EntityType>
+  <Association Name="FK_FacebookUsers_Users">
+    <End Role="Users" Type="Self.Users" Multiplicity="1" />
+    <End Role="FacebookUsers" Type="Self.FacebookUsers" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="user_id" />
+      </Principal>
+      <Dependent Role="FacebookUsers">
+        <PropertyRef Name="user_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_QuestionAnswers_Questions">
+    <End Role="Questions" Type="Self.Questions" Multiplicity="1" />
+    <End Role="QuestionAnswers" Type="Self.QuestionAnswers" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Questions">
+        <PropertyRef Name="question_id" />
+      </Principal>
+      <Dependent Role="QuestionAnswers">
+        <PropertyRef Name="question_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <!--Errors Found During Generation:
+warning 6035: The relationship 'FK_Questions_QuestionTypes' has columns that are not part of the key of the table on the primary side of the relationship. The relationship was excluded.
+        <Association Name="FK_Questions_QuestionTypes" />-->
+  <Association Name="FK_Questions_Topics">
+    <End Role="Topics" Type="Self.Topics" Multiplicity="1" />
+    <End Role="Questions" Type="Self.Questions" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Topics">
+        <PropertyRef Name="topic_id" />
+      </Principal>
+      <Dependent Role="Questions">
+        <PropertyRef Name="topic_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_QuestionTags_Questions">
+    <End Role="Questions" Type="Self.Questions" Multiplicity="1" />
+    <End Role="QuestionTags" Type="Self.QuestionTags" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Questions">
+        <PropertyRef Name="question_id" />
+      </Principal>
+      <Dependent Role="QuestionTags">
+        <PropertyRef Name="question_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_QuestionTags_Tags">
+    <End Role="Tags" Type="Self.Tags" Multiplicity="1" />
+    <End Role="QuestionTags" Type="Self.QuestionTags" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Tags">
+        <PropertyRef Name="tag_id" />
+      </Principal>
+      <Dependent Role="QuestionTags">
+        <PropertyRef Name="tag_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_QuizBlocks_Quizes">
+    <End Role="Quizes" Type="Self.Quizes" Multiplicity="1" />
+    <End Role="QuizBlocks" Type="Self.QuizBlocks" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Quizes">
+        <PropertyRef Name="quiz_id" />
+      </Principal>
+      <Dependent Role="QuizBlocks">
+        <PropertyRef Name="quiz_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_QuizBlocks_Topics">
+    <End Role="Topics" Type="Self.Topics" Multiplicity="1" />
+    <End Role="QuizBlocks" Type="Self.QuizBlocks" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Topics">
+        <PropertyRef Name="topic_id" />
+      </Principal>
+      <Dependent Role="QuizBlocks">
+        <PropertyRef Name="topic_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Quizes_QuizTypes">
+    <End Role="QuizTypes" Type="Self.QuizTypes" Multiplicity="1" />
+    <End Role="Quizes" Type="Self.Quizes" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="QuizTypes">
+        <PropertyRef Name="quiz_type_id" />
+      </Principal>
+      <Dependent Role="Quizes">
+        <PropertyRef Name="quiz_type_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_QuizPasses_Quizes">
+    <End Role="Quizes" Type="Self.Quizes" Multiplicity="1" />
+    <End Role="QuizPasses" Type="Self.QuizPasses" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Quizes">
+        <PropertyRef Name="quiz_id" />
+      </Principal>
+      <Dependent Role="QuizPasses">
+        <PropertyRef Name="quiz_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_QuizPasses_Users">
+    <End Role="Users" Type="Self.Users" Multiplicity="1" />
+    <End Role="QuizPasses" Type="Self.QuizPasses" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="user_id" />
+      </Principal>
+      <Dependent Role="QuizPasses">
+        <PropertyRef Name="user_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_QuizPassQuestions_Questions">
+    <End Role="Questions" Type="Self.Questions" Multiplicity="1" />
+    <End Role="QuizPassQuestions" Type="Self.QuizPassQuestions" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Questions">
+        <PropertyRef Name="question_id" />
+      </Principal>
+      <Dependent Role="QuizPassQuestions">
+        <PropertyRef Name="question_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_QuizPassQuestions_QuizBlocks">
+    <End Role="QuizBlocks" Type="Self.QuizBlocks" Multiplicity="1" />
+    <End Role="QuizPassQuestions" Type="Self.QuizPassQuestions" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="QuizBlocks">
+        <PropertyRef Name="quiz_block_id" />
+      </Principal>
+      <Dependent Role="QuizPassQuestions">
+        <PropertyRef Name="quiz_block_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_QuizPassQuestions_QuizPasses">
+    <End Role="QuizPasses" Type="Self.QuizPasses" Multiplicity="1" />
+    <End Role="QuizPassQuestions" Type="Self.QuizPassQuestions" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="QuizPasses">
+        <PropertyRef Name="quiz_pass_id" />
+      </Principal>
+      <Dependent Role="QuizPassQuestions">
+        <PropertyRef Name="quiz_pass_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_QuizPassScores_QuizPasses">
+    <End Role="QuizPasses" Type="Self.QuizPasses" Multiplicity="1" />
+    <End Role="QuizPassScores" Type="Self.QuizPassScores" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="QuizPasses">
+        <PropertyRef Name="quiz_pass_id" />
+      </Principal>
+      <Dependent Role="QuizPassScores">
+        <PropertyRef Name="quiz_pass_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_QuizPassScores_Users">
+    <End Role="Users" Type="Self.Users" Multiplicity="1" />
+    <End Role="QuizPassScores" Type="Self.QuizPassScores" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="user_id" />
+      </Principal>
+      <Dependent Role="QuizPassScores">
+        <PropertyRef Name="evaluated_by" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_QuizQuestions_Questions">
+    <End Role="Questions" Type="Self.Questions" Multiplicity="1" />
+    <End Role="QuizQuestions" Type="Self.QuizQuestions" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Questions">
+        <PropertyRef Name="question_id" />
+      </Principal>
+      <Dependent Role="QuizQuestions">
+        <PropertyRef Name="question_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_QuizQuestions_QuizBlocks">
+    <End Role="QuizBlocks" Type="Self.QuizBlocks" Multiplicity="1" />
+    <End Role="QuizQuestions" Type="Self.QuizQuestions" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="QuizBlocks">
+        <PropertyRef Name="quiz_block_id" />
+      </Principal>
+      <Dependent Role="QuizQuestions">
+        <PropertyRef Name="quiz_block_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_QuizQuestions_QuizVariants">
+    <End Role="QuizVariants" Type="Self.QuizVariants" Multiplicity="0..1" />
+    <End Role="QuizQuestions" Type="Self.QuizQuestions" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="QuizVariants">
+        <PropertyRef Name="quiz_variant_id" />
+      </Principal>
+      <Dependent Role="QuizQuestions">
+        <PropertyRef Name="quiz_variant_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_QuizVariants_Quizes">
+    <End Role="Quizes" Type="Self.Quizes" Multiplicity="1" />
+    <End Role="QuizVariants" Type="Self.QuizVariants" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Quizes">
+        <PropertyRef Name="quiz_id" />
+      </Principal>
+      <Dependent Role="QuizVariants">
+        <PropertyRef Name="quiz_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_UserAnswers_QuestionAnswers">
+    <End Role="QuestionAnswers" Type="Self.QuestionAnswers" Multiplicity="1" />
+    <End Role="UserAnswers" Type="Self.UserAnswers" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="QuestionAnswers">
+        <PropertyRef Name="answer_id" />
+      </Principal>
+      <Dependent Role="UserAnswers">
+        <PropertyRef Name="answer_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_UserAnswers_QuizPassQuestions">
+    <End Role="QuizPassQuestions" Type="Self.QuizPassQuestions" Multiplicity="1" />
+    <End Role="UserAnswers" Type="Self.UserAnswers" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="QuizPassQuestions">
+        <PropertyRef Name="quiz_pass_question_id" />
+      </Principal>
+      <Dependent Role="UserAnswers">
+        <PropertyRef Name="quiz_pass_question_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_UserAnswerScores_QuizPassQuestions">
+    <End Role="QuizPassQuestions" Type="Self.QuizPassQuestions" Multiplicity="1" />
+    <End Role="UserAnswerScores" Type="Self.UserAnswerScores" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="QuizPassQuestions">
+        <PropertyRef Name="quiz_pass_question_id" />
+      </Principal>
+      <Dependent Role="UserAnswerScores">
+        <PropertyRef Name="quiz_pass_question_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_UserAnswerScores_Users">
+    <End Role="Users" Type="Self.Users" Multiplicity="1" />
+    <End Role="UserAnswerScores" Type="Self.UserAnswerScores" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="user_id" />
+      </Principal>
+      <Dependent Role="UserAnswerScores">
+        <PropertyRef Name="evaluated_by" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_UsersToUserGroups_UserGroups">
+    <End Role="UserGroups" Type="Self.UserGroups" Multiplicity="1" />
+    <End Role="UsersToUserGroups" Type="Self.UsersToUserGroups" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="UserGroups">
+        <PropertyRef Name="group_id" />
+      </Principal>
+      <Dependent Role="UsersToUserGroups">
+        <PropertyRef Name="group_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_UsersToUserGroups_Users">
+    <End Role="Users" Type="Self.Users" Multiplicity="1" />
+    <End Role="UsersToUserGroups" Type="Self.UsersToUserGroups" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="user_id" />
+      </Principal>
+      <Dependent Role="UsersToUserGroups">
+        <PropertyRef Name="user_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_UserTextAnswers_QuizPassQuestions">
+    <End Role="QuizPassQuestions" Type="Self.QuizPassQuestions" Multiplicity="1" />
+    <End Role="UserTextAnswers" Type="Self.UserTextAnswers" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="QuizPassQuestions">
+        <PropertyRef Name="quiz_pass_question_id" />
+      </Principal>
+      <Dependent Role="UserTextAnswers">
+        <PropertyRef Name="quiz_pass_question_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="eQuizModelStoreContainer">
+    <EntitySet Name="FacebookUsers" EntityType="Self.FacebookUsers" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="QuestionAnswers" EntityType="Self.QuestionAnswers" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Questions" EntityType="Self.Questions" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="QuestionTags" EntityType="Self.QuestionTags" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="QuestionTypes" EntityType="Self.QuestionTypes" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="QuizBlocks" EntityType="Self.QuizBlocks" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Quizes" EntityType="Self.Quizes" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="QuizPasses" EntityType="Self.QuizPasses" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="QuizPassQuestions" EntityType="Self.QuizPassQuestions" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="QuizPassScores" EntityType="Self.QuizPassScores" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="QuizQuestions" EntityType="Self.QuizQuestions" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="QuizTypes" EntityType="Self.QuizTypes" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="QuizVariants" EntityType="Self.QuizVariants" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Tags" EntityType="Self.Tags" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Topics" EntityType="Self.Topics" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="UserAnswers" EntityType="Self.UserAnswers" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="UserAnswerScores" EntityType="Self.UserAnswerScores" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="UserGroups" EntityType="Self.UserGroups" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="UsersToUserGroups" EntityType="Self.UsersToUserGroups" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="UserTextAnswers" EntityType="Self.UserTextAnswers" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_FacebookUsers_Users" Association="Self.FK_FacebookUsers_Users">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="FacebookUsers" EntitySet="FacebookUsers" />
+    </AssociationSet>
+    <AssociationSet Name="FK_QuestionAnswers_Questions" Association="Self.FK_QuestionAnswers_Questions">
+      <End Role="Questions" EntitySet="Questions" />
+      <End Role="QuestionAnswers" EntitySet="QuestionAnswers" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Questions_Topics" Association="Self.FK_Questions_Topics">
+      <End Role="Topics" EntitySet="Topics" />
+      <End Role="Questions" EntitySet="Questions" />
+    </AssociationSet>
+    <AssociationSet Name="FK_QuestionTags_Questions" Association="Self.FK_QuestionTags_Questions">
+      <End Role="Questions" EntitySet="Questions" />
+      <End Role="QuestionTags" EntitySet="QuestionTags" />
+    </AssociationSet>
+    <AssociationSet Name="FK_QuestionTags_Tags" Association="Self.FK_QuestionTags_Tags">
+      <End Role="Tags" EntitySet="Tags" />
+      <End Role="QuestionTags" EntitySet="QuestionTags" />
+    </AssociationSet>
+    <AssociationSet Name="FK_QuizBlocks_Quizes" Association="Self.FK_QuizBlocks_Quizes">
+      <End Role="Quizes" EntitySet="Quizes" />
+      <End Role="QuizBlocks" EntitySet="QuizBlocks" />
+    </AssociationSet>
+    <AssociationSet Name="FK_QuizBlocks_Topics" Association="Self.FK_QuizBlocks_Topics">
+      <End Role="Topics" EntitySet="Topics" />
+      <End Role="QuizBlocks" EntitySet="QuizBlocks" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Quizes_QuizTypes" Association="Self.FK_Quizes_QuizTypes">
+      <End Role="QuizTypes" EntitySet="QuizTypes" />
+      <End Role="Quizes" EntitySet="Quizes" />
+    </AssociationSet>
+    <AssociationSet Name="FK_QuizPasses_Quizes" Association="Self.FK_QuizPasses_Quizes">
+      <End Role="Quizes" EntitySet="Quizes" />
+      <End Role="QuizPasses" EntitySet="QuizPasses" />
+    </AssociationSet>
+    <AssociationSet Name="FK_QuizPasses_Users" Association="Self.FK_QuizPasses_Users">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="QuizPasses" EntitySet="QuizPasses" />
+    </AssociationSet>
+    <AssociationSet Name="FK_QuizPassQuestions_Questions" Association="Self.FK_QuizPassQuestions_Questions">
+      <End Role="Questions" EntitySet="Questions" />
+      <End Role="QuizPassQuestions" EntitySet="QuizPassQuestions" />
+    </AssociationSet>
+    <AssociationSet Name="FK_QuizPassQuestions_QuizBlocks" Association="Self.FK_QuizPassQuestions_QuizBlocks">
+      <End Role="QuizBlocks" EntitySet="QuizBlocks" />
+      <End Role="QuizPassQuestions" EntitySet="QuizPassQuestions" />
+    </AssociationSet>
+    <AssociationSet Name="FK_QuizPassQuestions_QuizPasses" Association="Self.FK_QuizPassQuestions_QuizPasses">
+      <End Role="QuizPasses" EntitySet="QuizPasses" />
+      <End Role="QuizPassQuestions" EntitySet="QuizPassQuestions" />
+    </AssociationSet>
+    <AssociationSet Name="FK_QuizPassScores_QuizPasses" Association="Self.FK_QuizPassScores_QuizPasses">
+      <End Role="QuizPasses" EntitySet="QuizPasses" />
+      <End Role="QuizPassScores" EntitySet="QuizPassScores" />
+    </AssociationSet>
+    <AssociationSet Name="FK_QuizPassScores_Users" Association="Self.FK_QuizPassScores_Users">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="QuizPassScores" EntitySet="QuizPassScores" />
+    </AssociationSet>
+    <AssociationSet Name="FK_QuizQuestions_Questions" Association="Self.FK_QuizQuestions_Questions">
+      <End Role="Questions" EntitySet="Questions" />
+      <End Role="QuizQuestions" EntitySet="QuizQuestions" />
+    </AssociationSet>
+    <AssociationSet Name="FK_QuizQuestions_QuizBlocks" Association="Self.FK_QuizQuestions_QuizBlocks">
+      <End Role="QuizBlocks" EntitySet="QuizBlocks" />
+      <End Role="QuizQuestions" EntitySet="QuizQuestions" />
+    </AssociationSet>
+    <AssociationSet Name="FK_QuizQuestions_QuizVariants" Association="Self.FK_QuizQuestions_QuizVariants">
+      <End Role="QuizVariants" EntitySet="QuizVariants" />
+      <End Role="QuizQuestions" EntitySet="QuizQuestions" />
+    </AssociationSet>
+    <AssociationSet Name="FK_QuizVariants_Quizes" Association="Self.FK_QuizVariants_Quizes">
+      <End Role="Quizes" EntitySet="Quizes" />
+      <End Role="QuizVariants" EntitySet="QuizVariants" />
+    </AssociationSet>
+    <AssociationSet Name="FK_UserAnswers_QuestionAnswers" Association="Self.FK_UserAnswers_QuestionAnswers">
+      <End Role="QuestionAnswers" EntitySet="QuestionAnswers" />
+      <End Role="UserAnswers" EntitySet="UserAnswers" />
+    </AssociationSet>
+    <AssociationSet Name="FK_UserAnswers_QuizPassQuestions" Association="Self.FK_UserAnswers_QuizPassQuestions">
+      <End Role="QuizPassQuestions" EntitySet="QuizPassQuestions" />
+      <End Role="UserAnswers" EntitySet="UserAnswers" />
+    </AssociationSet>
+    <AssociationSet Name="FK_UserAnswerScores_QuizPassQuestions" Association="Self.FK_UserAnswerScores_QuizPassQuestions">
+      <End Role="QuizPassQuestions" EntitySet="QuizPassQuestions" />
+      <End Role="UserAnswerScores" EntitySet="UserAnswerScores" />
+    </AssociationSet>
+    <AssociationSet Name="FK_UserAnswerScores_Users" Association="Self.FK_UserAnswerScores_Users">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="UserAnswerScores" EntitySet="UserAnswerScores" />
+    </AssociationSet>
+    <AssociationSet Name="FK_UsersToUserGroups_UserGroups" Association="Self.FK_UsersToUserGroups_UserGroups">
+      <End Role="UserGroups" EntitySet="UserGroups" />
+      <End Role="UsersToUserGroups" EntitySet="UsersToUserGroups" />
+    </AssociationSet>
+    <AssociationSet Name="FK_UsersToUserGroups_Users" Association="Self.FK_UsersToUserGroups_Users">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="UsersToUserGroups" EntitySet="UsersToUserGroups" />
+    </AssociationSet>
+    <AssociationSet Name="FK_UserTextAnswers_QuizPassQuestions" Association="Self.FK_UserTextAnswers_QuizPassQuestions">
+      <End Role="QuizPassQuestions" EntitySet="QuizPassQuestions" />
+      <End Role="UserTextAnswers" EntitySet="UserTextAnswers" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>
