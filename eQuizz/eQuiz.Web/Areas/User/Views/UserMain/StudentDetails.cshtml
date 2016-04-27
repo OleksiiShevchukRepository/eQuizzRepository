@@ -1,0 +1,64 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Student Details</title>
+    <link rel="stylesheet" href="~/Areas/User/Content/Styles/studentDetailsStyles.css" />
+</head>
+
+<body>
+    <div id='loginContent'>
+        <table>
+            <thead>
+                <tr>
+                    <th>
+                        <h3>Student Details</h3>
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>First name</td>
+                    <td>
+                        <input type="text" id='firstName_txt'>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Last Name</td>
+                    <td>
+                        <input type="text" id='lastName_txt'>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Phone</td>
+                    <td>
+                        <input type="text" id='phone_txt'>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Email</td>
+                    <td>
+                        <input type="text" id='email_txt'>
+                    </td>
+                </tr>
+                <tr>
+                    <td>User group</td>
+                    <td>
+                        <select id='userGroup_txt'></select>
+                    </td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td><a href='@Url.Action("QuizzesList", "UserMain")'><input type="button" value="Save"></a></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</body>
+
+</html>

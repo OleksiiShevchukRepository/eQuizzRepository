@@ -1,0 +1,18 @@
+#headerTable {
+    table-layout: fixed;
+    width: 100%;
+}
+
+#headerTable #User_group_td {
+    text-align: right;
+}
+
+#quizzesTable {
+    border-collapse: separate;
+    border-spacing: 0 1em;
+    border-spacing: 10px;
+}
+
+#content {
+     margin-top: 80px;   
+}

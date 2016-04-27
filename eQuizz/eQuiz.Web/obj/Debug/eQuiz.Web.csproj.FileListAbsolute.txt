@@ -104,3 +104,4 @@ D:\eQuizzRepository\eQuizz\eQuiz.Web\bin\System.Web.Http.xml
 D:\eQuizzRepository\eQuizz\eQuiz.Web\bin\System.Web.Http.WebHost.xml
 D:\eQuizzRepository\eQuizz\eQuiz.Web\obj\Debug\eQuiz.Web.dll
 D:\eQuizzRepository\eQuizz\eQuiz.Web\obj\Debug\eQuiz.Web.pdb
+D:\eQuizzRepository\eQuizz\eQuiz.Web\obj\Debug\eQuiz.Web.csprojResolveAssemblyReference.cache

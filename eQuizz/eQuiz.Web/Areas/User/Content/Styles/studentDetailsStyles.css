@@ -1,0 +1,35 @@
+h1 {
+    font-family: sans-serif;
+}
+
+table {
+    position: fixed;
+    top: 30%;
+    left: 40%;
+    
+    border-collapse: separate;
+    border-spacing: 0 1em;
+}
+
+tr {
+    
+}
+td {
+    text-align: left;
+}
+
+select {
+    border-radius: 4px;
+    width: 172px;
+}
+
+input, select {
+     border: 2px solid black;
+}
+
+input[type='button'] {
+     width: 110px;
+     border-radius: 4px;
+}
+
+

@@ -1,0 +1,27 @@
+#loginContent {
+    text-align: center;
+}
+
+h1 {
+    font-family: sans-serif;
+}
+
+table {
+    border-spacing: 5px;
+    position: fixed;
+    top: 40%;
+    left: 40%;
+}
+
+td {
+    text-align: left;
+}
+
+#empty {
+    width: 15px;
+}
+
+input {
+    border: 2px solid black;
+    border-radius: 4px;
+}

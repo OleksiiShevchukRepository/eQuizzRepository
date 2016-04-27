@@ -1,0 +1,85 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Quizz in process</title>
+    <link rel="stylesheet" href="~/Areas/User/Content/Styles/quizzStyles.css">
+    <link rel="stylesheet" href="~/Areas/User/Content/Styles/quizzListStyles.css">
+    <link rel="stylesheet" href="~/Areas/User/Content/Styles/bootstrap-theme.css">
+    <link rel="stylesheet" href="~/Areas/User/Content/Styles/bootstrap.css">
+</head>
+
+<body>
+    <header>
+        <table id='headerTable'>
+            <tr>
+                <td id='Menu_td'><a href='@Url.Action("QuizzesList", "UserMain")'>Menu</a></td>
+                <td id='User_group_td'>FullName</td>
+            </tr>
+        </table>
+    </header>
+    <hr>
+    <div class="text-center">
+        <nav>
+            <ul class="pagination">
+
+                <li><a href="#">Q1</a></li>
+                <li><a href="#">Q2</a></li>
+                <li><a href="#">Q3</a></li>
+                <li><a href="#">Q4</a></li>
+                <li><a href="#">Q5</a></li>
+                <li><a href="#">Q6</a></li>
+                <li><a href="#">Q7</a></li>
+                <li><a href="#">Q8</a></li>
+
+            </ul>
+        </nav>
+
+        <ul class="list-unstyled">
+            <li>
+                <h2>Some question</h2>
+            </li>
+            <li>
+                <p>
+                    <input type="checkbox"> Variant1
+                </p>
+            </li>
+            <li>
+                <p>
+                    <input type="checkbox"> Variant2
+                </p>
+            </li>
+            <li>
+                <p>
+                    <input type="checkbox"> Variant3
+                </p>
+            </li>
+        </ul>
+    </div>
+
+    <footer>
+        <table>
+            <tr>
+                <td>
+                    <input type="button" value="&laquo Previous">
+                </td>
+                <td class="empty"></td>
+                <td>
+                    <input type="button" value="Next &raquo">
+                </td>
+                <td class="empty"></td>
+                <td>
+                    <input type="button" value="Finish" onclick="alert('You have just finished the quizz!')">
+                </td>
+                <td class="empty"></td>
+            </tr>
+        </table>
+    </footer>
+</body>
+
+</html>

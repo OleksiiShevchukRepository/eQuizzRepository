@@ -1,0 +1,60 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>
+        Quizz List
+    </title>
+    <link rel="stylesheet" href="~/Areas/User/Content/Styles/quizzListStyles.css" />
+</head>
+<body>
+    <header>
+        <table id='headerTable'>
+            <tr>
+                <td id='Menu_td'><a href="#">Menu</a></td>
+                <td id='User_group_td'>User Group # <a href='@Url.Action("StudentDetails", "UserMain")'>FullName</a></td>
+            </tr>
+        </table>
+    </header>
+    <hr>
+    <div id='content'>
+        <table id='quizzesTable'>
+            <thead>
+                <tr>
+                    <th><h2>Quizzes</h2></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><a href="#">Quizz1</a></td>
+                    <td>Start date/time</td>
+                    <td>Duration</td>
+                    <td><a href='@Url.Action("Quizz", "UserMain")'>Start</a></td>
+                </tr>
+                <tr>
+                    <td><a href="#">Quizz2</a></td>
+                    <td>Start date/time</td>
+                    <td>Duration</td>
+                    <td>Inactive</td>
+                </tr>
+                <tr>
+                    <td><a href="#">Quizz3</a></td>
+                    <td>Start date/time</td>
+                    <td>Duration</td>
+                    <td>Inactive</td>
+                </tr>
+                <tr>
+                    <td><a href="#">Quizz4</a></td>
+                    <td>Start date/time</td>
+                    <td>Duration</td>
+                    <td>Inactive</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>

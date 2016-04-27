@@ -1,0 +1,24 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Login</title>
+    <link rel="stylesheet" href="~/Areas/User/Content/Styles/login_styles.css"/>
+</head>
+<body>
+    <div id='loginContent'>
+        <table>
+            <tr>
+                <td><h1>Login</h1></td>
+                <td id='empty'></td>
+                <td><a href='@Url.Action("StudentLogin", "UserMain")'><input type="button" value="Student"></a></td>
+                <td><input type="button" value="Moderator/Admin"></td>
+            </tr>
+        </table>
+    </div>
+</body>
+</html>
